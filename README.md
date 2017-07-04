@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/bitnami/bitnami-docker-tensorflow-inception/tree/master.svg?style=shield)](https://circleci.com/gh/bitnami/bitnami-docker-tensorflow-inception/tree/master)
-[![Slack](http://slack.oss.bitnami.com/badge.svg)](http://slack.oss.bitnami.com)
+[![Slack](https://img.shields.io/badge/slack-join%20chat%20%E2%86%92-e01563.svg)](http://slack.oss.bitnami.com)
 [![Kubectl](https://img.shields.io/badge/kubectl-Available-green.svg)](https://raw.githubusercontent.com/bitnami/bitnami-docker-tensorflow-inception/master/kubernetes.yml)
 
 # What is TensorFlow Inception?
@@ -24,15 +24,15 @@ $ tar xzf inception-v3-2016-03-01.tar.gz
 ## Docker Compose
 
 ```bash
-$ curl -LO https://raw.githubusercontent.com/bitnami/bitnami-docker-tensorflow-inception/master/docker-compose.yml
-$ docker-compose up
+$ curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-tensorflow-inception/master/docker-compose.yml > docker-compose.yml
+$ docker-compose up -d
 ```
 
 ## Kubernetes
 
 > **WARNING:** This is a beta configuration, currently unsupported.
 
-Get the raw URL pointing to the kubernetes.yml manifest and use kubectl to create the resources on your Kubernetes cluster like so:
+Get the raw URL pointing to the `kubernetes.yml` manifest and use `kubectl` to create the resources on your Kubernetes cluster like so:
 
 ```bash
 $ kubectl create -f https://raw.githubusercontent.com/bitnami/bitnami-docker-tensorflow-inception/master/kubernetes.yml
@@ -69,12 +69,12 @@ services:
     ports:
       - '9000:9000'
     volumes:
-      - 'tensorflow_serving_data:/bitnami/tensorflow-serving'
+      - 'tensorflow_serving_data:/bitnami'
       - '/tmp/model-data/:/bitnami/model-data'
   tensorflow-inception:
     image: 'bitnami/tensorflow-inception:latest'
     volumes:
-      - 'tensorflow_inception_data:/bitnami/tensorflow-inception'
+      - 'tensorflow_inception_data:/bitnami'
       - '/tmp/model-data/:/bitnami/model-data'
     depends_on:
       - tensorflow-serving
@@ -112,17 +112,18 @@ If you want to run the application manually instead of using docker-compose, the
 
 ## Persisting your application
 
-If you remove every container and volume all your data will be lost, and the next time you run the image the application will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
+If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence of the TensorFlow Inception client deployment, the above examples define docker volumes namely `tensorflow_serving_data` and `tensorflow_inception_data`. The TensorFlow Inception client application state will persist as long as these volumes are not removed.
+For persistence you should mount a volume at the `/bitnami` path. Additionally you should mount a volume for [persistence of the TensorFlow Serving configuration](https://github.com/bitnami/bitnami-docker-tensorflow-serving#persisting-your-configuration).
+
+The above examples define docker volumes namely `tensorflow_serving_data` and `tensorflow_inception_data`. The ensorFlow Inception client application state will persist as long as these volumes are not removed.
 
 To avoid inadvertent removal of these volumes you can [mount host directories as data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/). Alternatively you can make use of volume plugins to host the volume data.
-
-> **Note!** If you have already started using your application, follow the steps on [backing](#backing-up-your-application) up to pull the data from your running container down to your host.
 
 ### Mount host directories as data volumes with Docker Compose
 
 This requires a minor change to the `docker-compose.yml` template previously shown:
+
 ```yaml
 version: '2'
 
@@ -132,13 +133,14 @@ services:
     ports:
       - '9000:9000'
     volumes:
-      - '/path/to/tensorflow-serving-persistence:/bitnami/tensorflow-serving'
+      - '/path/to/tensorflow-serving-persistence:/bitnami'
+
   tensorflow-inception:
     image: 'bitnami/tensorflow-inception:latest'
     depends_on:
       - tensorflow-serving
     volumes:
-      - '/path/to/tensorflow-inception-persistence:/bitnami/tensorflow-inception'
+      - '/path/to/tensorflow-inception-persistence:/bitnami'
 ```
 
 ### Mount host directories as data volumes using the Docker command line
@@ -154,7 +156,7 @@ services:
   ```bash
   $ docker run -d --name tensorflow-serving -p 9000:9000 \
     --net tensorflow-tier \
-    --volume /path/to/tensorflow-serving-persistence:/bitnami/tensorflow-serving \
+    --volume /path/to/tensorflow-serving-persistence:/bitnami \
     --volume /path/to/model_data:/bitnami/model-data \
     bitnami/tensorflow-serving:latest
   ```
@@ -166,7 +168,7 @@ services:
   ```bash
   $ docker run -d --name tensorflow-inception \
     --net tensorflow-tier \
-    --volume /path/to/tensorflow-inception-persistence:/bitnami/tensorflow-inception \
+    --volume /path/to/tensorflow-inception-persistence:/bitnami \
     --volume /path/to/model_data:/bitnami/model-data \
     bitnami/tensorflow-inception:latest
   ```
@@ -177,7 +179,7 @@ Bitnami provides up-to-date versions of Tensorflow-Serving and TensorFlow Incept
 
 1. Get the updated images:
 
-  ```
+  ```bash
   $ docker pull bitnami/tensorflow-inception:latest
   ```
 
@@ -186,7 +188,15 @@ Bitnami provides up-to-date versions of Tensorflow-Serving and TensorFlow Incept
  * For docker-compose: `$ docker-compose stop tensorflow-inception`
  * For manual execution: `$ docker stop tensorflow-inception`
 
-3. (For non-compose execution only) Create a [backup](#backing-up-your-application) if you have not mounted the tensorflow-inception folder in the host.
+3. Take a snapshot of the application state
+
+```console
+$ rsync -a tensorflow-inception-persistence tensorflow-inception-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
+```
+
+Additionally, [snapshot the TensorFlow Serving data](https://github.com/bitnami/bitnami-docker-mariadb#step-2-stop-and-backup-the-currently-running-container)
+
+You can use these snapshots to restore the application state should the upgrade fail.
 
 4. Remove the currently running container
 
@@ -199,10 +209,13 @@ Bitnami provides up-to-date versions of Tensorflow-Serving and TensorFlow Incept
  * For manual execution ([mount](#mount-persistent-folders-manually) the directories if needed): `docker run --name tensorflow-inception bitnami/tensorflow-inception:latest`
 
 # Configuration
+
 ## Environment variables
- When you start the tensorflow-inception image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the docker run command line. If you want to add a new environment variable:
+
+When you start the tensorflow-inception image, you can adjust the configuration of the instance by passing one or more environment variables either on the docker-compose file or on the docker run command line. If you want to add a new environment variable:
 
  * For docker-compose add the variable name and value under the application section:
+
 ```yaml
 tensorflow-inception:
   image: bitnami/tensorflow-inception:latest
@@ -217,7 +230,7 @@ tensorflow-inception:
   ```bash
   $ docker run -d --name tensorflow-inception \
     --net tensorflow-tier \
-    --volume /path/to/tensorflow-inception-persistence:/bitnami/tensorflow-inception \
+    --volume /path/to/tensorflow-inception-persistence:/bitnami \
     bitnami/tensorflow-inception:latest
   ```
 
@@ -227,43 +240,19 @@ Available variables:
  - `TENSORFLOW_SERVING_PORT_NUMBER`: Port used by Tensorflow-Serving server. Default: **9000**
  - `TENSORFLOW_INCEPTION_MODEL_INPUT_DATA_NAME`: Folder containing the data model to export. Default: **inception-v3**
 
-# Backing up your application
-
-To backup your application data follow these steps:
-
-1. Stop the running container:
-
-  * For docker-compose: `$ docker-compose stop tensorflow-inception`
-  * For manual execution: `$ docker stop tensorflow-inception`
-
-2. Copy the TensorFlow Inception client data folder in the host:
-
-  ```
-  $ docker cp /path/to/tensorflow-inception-persistence:/bitnami/tensorflow-inception
-  ```
-
-# Restoring a backup
-
-To restore your application using backed up data simply mount the folder with TensorFlow Inception client data in the container. See [persisting your application](#persisting-your-application) section for more info.
-
 # Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an
-[issue](https://github.com/bitnami/bitnami-docker-tensorflow-inception/issues), or submit a
-[pull request](https://github.com/bitnami/bitnami-docker-tensorflow-inception/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/bitnami-docker-tensorflow-inception/issues), or submit a [pull request](https://github.com/bitnami/bitnami-docker-tensorflow-inception/pulls) with your contribution.
 
 # Issues
 
-If you encountered a problem running this container, you can file an
-[issue](https://github.com/bitnami/bitnami-docker-tensorflow-inception/issues). For us to provide better support,
-be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/bitnami-docker-tensorflow-inception/issues). For us to provide better support, be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`$ docker version`)
 - Output of `$ docker info`
 - Version of this container (`$ echo $BITNAMI_IMAGE_VERSION` inside the container)
-- The command you used to run the container, and any relevant output you saw (masking any sensitive
-information)
+- The command you used to run the container, and any relevant output you saw (masking any sensitive information)
 
 # Community
 

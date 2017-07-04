@@ -7,14 +7,14 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - 'tensorflow_serving_data:/bitnami/tensorflow-serving'
+      - 'tensorflow_serving_data:/bitnami'
       - '/tmp/model-data:/bitnami/model-data'
   tensorflow-inception:
     image: 'bitnami/tensorflow-inception:0'
     depends_on:
       - tensorflow-serving
     volumes:
-      - 'tensorflow_inception_data:/bitnami/tensorflow-inception'
+      - 'tensorflow_inception_data:/bitnami'
       - '/tmp/model-data:/bitnami/model-data'
 volumes:
   tensorflow_serving_data:
