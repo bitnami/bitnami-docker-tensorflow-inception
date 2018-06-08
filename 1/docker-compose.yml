@@ -2,8 +2,6 @@ version: '2'
 services:
   tensorflow-serving:
     image: 'bitnami/tensorflow-serving:latest'
-    labels:
-      kompose.service.type: nodeport
     ports:
       - 9000:9000
     volumes:
