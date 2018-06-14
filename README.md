@@ -193,7 +193,7 @@ You can use these snapshots to restore the application state should the upgrade 
 
 5. Run the new image
 
- * For docker-compose: `$ docker-compose start tensorflow-inception`
+ * For docker-compose: `$ docker-compose up tensorflow-inception`
  * For manual execution ([mount](#mount-persistent-folders-manually) the directories if needed): `docker run --name tensorflow-inception bitnami/tensorflow-inception:latest`
 
 # Configuration
