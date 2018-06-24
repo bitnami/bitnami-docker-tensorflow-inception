@@ -36,7 +36,7 @@ $ docker-compose up -d
 
 # Supported tags and respective `Dockerfile` links
 
-* [`1`, `1.5.0-r48`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.5.0-r48/1/Dockerfile)
+* [`1`, `1.5.0-r49`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.5.0-r49/1/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
 
