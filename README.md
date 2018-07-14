@@ -36,7 +36,9 @@ $ docker-compose up -d
 
 # Supported tags and respective `Dockerfile` links
 
-* [`1`, `1.5.0-r49`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.5.0-r49/1/Dockerfile)
+* [`1-debian-9`, `1.8.0-debian-9-r0`, `1`, `1.8.0`, `1.8.0-r0`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.8.0-debian-9-r0/1/Dockerfile)
+* [`1-debian-8`, `1.5.0-debian-8-r49` (1/debian-8/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.5.0-debian-8-r49/1/debian-8/Dockerfile)
+* [`1-ol-7`, `0.0.0-ol-7-r0` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/0.0.0-ol-7-r0/1/ol-7/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
 
@@ -61,7 +63,8 @@ services:
   tensorflow-serving:
     image: 'bitnami/tensorflow-serving:latest'
     ports:
-      - '9000:9000'
+      - '8500:8500'
+      - '8501:8501'
     volumes:
       - 'tensorflow_serving_data:/bitnami'
       - '/tmp/model-data/:/bitnami/model-data'
@@ -93,7 +96,7 @@ If you want to run the application manually instead of using docker-compose, the
 2. Start a Tensorflow Serving server in the network generated:
 
   ```bash
-  $ docker run -d -v /tmp/model-data:/bitnami/model-data -p 9000:9000 --name tensorflow-serving --net tensorflow-tier bitnami/tensorflow-serving:latest
+  $ docker run -d -v /tmp/model-data:/bitnami/model-data -p 8500:8500 -p 8501:8501 --name tensorflow-serving --net tensorflow-tier bitnami/tensorflow-serving:latest
   ```
 
   *Note:* You need to give the container a name in order to TensorFlow Inception client to resolve the host
@@ -125,7 +128,8 @@ services:
   tensorflow-serving:
     image: 'bitnami/tensorflow-serving:latest'
     ports:
-      - '9000:9000'
+      - '8500:8500'
+      - '8501:8501'
     volumes:
       - '/path/to/tensorflow-serving-persistence:/bitnami'
 
@@ -148,7 +152,7 @@ services:
 2. Create a Tensorflow-Serving container with host volume:
 
   ```bash
-  $ docker run -d --name tensorflow-serving -p 9000:9000 \
+  $ docker run -d --name tensorflow-serving -p 8500:8500 -p 8501:8501 \
     --net tensorflow-tier \
     --volume /path/to/tensorflow-serving-persistence:/bitnami \
     --volume /path/to/model_data:/bitnami/model-data \
@@ -231,7 +235,7 @@ tensorflow-inception:
 Available variables:
 
  - `TENSORFLOW_SERVING_HOST`: Hostname for Tensorflow-Serving server. Default: **tensorflow-serving**
- - `TENSORFLOW_SERVING_PORT_NUMBER`: Port used by Tensorflow-Serving server. Default: **9000**
+ - `TENSORFLOW_SERVING_PORT_NUMBER`: Port used by Tensorflow-Serving server. Default: **8500**
  - `TENSORFLOW_INCEPTION_MODEL_INPUT_DATA_NAME`: Folder containing the data model to export. Default: **inception-v3**
 
 # Contributing
