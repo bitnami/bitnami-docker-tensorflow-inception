@@ -39,7 +39,7 @@ $ docker-compose up -d
 > NOTE: Debian 8 images have been deprecated in favor of Debian 9 images. Bitnami will not longer publish new Docker images based on Debian 8.
 
 
-* [`1-ol-7`, `1.8.0-ol-7-r4` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.8.0-ol-7-r4/1/ol-7/Dockerfile)
+* [`1-ol-7`, `1.8.0-ol-7-r6` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.8.0-ol-7-r6/1/ol-7/Dockerfile)
 * [`1-debian-9`, `1.8.0-debian-9-r5`, `1`, `1.8.0`, `1.8.0-r5`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.8.0-debian-9-r5/1/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
