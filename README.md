@@ -40,7 +40,7 @@ $ docker-compose up -d
 
 
 * [`1-ol-7`, `1.9.1-ol-7-r3` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.9.1-ol-7-r3/1/ol-7/Dockerfile)
-* [`1-debian-9`, `1.9.1-debian-9-r2`, `1`, `1.9.1`, `1.9.1-r2`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.9.1-debian-9-r2/1/Dockerfile)
+* [`1-debian-9`, `1.9.1-debian-9-r3`, `1`, `1.9.1`, `1.9.1-r3`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.9.1-debian-9-r3/1/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
 
