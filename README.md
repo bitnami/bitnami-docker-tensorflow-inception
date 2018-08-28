@@ -42,7 +42,7 @@ Learn more about the Bitnami tagging policy and the difference between rolling t
 
 
 * [`1-ol-7`, `1.10.1-ol-7-r3` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.10.1-ol-7-r3/1/ol-7/Dockerfile)
-* [`1-debian-9`, `1.10.1-debian-9-r3`, `1`, `1.10.1`, `1.10.1-r3`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.10.1-debian-9-r3/1/Dockerfile)
+* [`1-debian-9`, `1.10.1-debian-9-r4`, `1`, `1.10.1`, `1.10.1-r4`, `latest` (1/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.10.1-debian-9-r4/1/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
 
