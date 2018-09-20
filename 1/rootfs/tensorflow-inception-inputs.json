@@ -1,5 +1,0 @@
-{
-  "host": "{{$global.env.TENSORFLOW_SERVING_HOST}}",
-  "modelInputDataName": "{{$global.env.TENSORFLOW_INCEPTION_MODEL_INPUT_DATA_NAME}}",
-  "port": "{{$global.env.TENSORFLOW_SERVING_PORT_NUMBER}}"
-}
