@@ -34,6 +34,10 @@ $ docker-compose up -d
 * Bitnami images are built on CircleCI and automatically pushed to the Docker Hub.
 * All our images are based on [minideb](https://github.com/bitnami/minideb) a minimalist Debian based container image which gives you a small base container image and the familiarity of a leading linux distribution.
 
+# How to deploy TensorFlow Inception in Kubernetes?
+
+Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami TensorFlow Inception Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/tensorflow-inception).
+
 # Supported tags and respective `Dockerfile` links
 
 > NOTE: Debian 8 images have been deprecated in favor of Debian 9 images. Bitnami will not longer publish new Docker images based on Debian 8.
@@ -41,7 +45,7 @@ $ docker-compose up -d
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://docs.bitnami.com/containers/how-to/understand-rolling-tags-containers/).
 
 
-* [`1-ol-7`, `1.10.1-ol-7-r25` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.10.1-ol-7-r25/1/ol-7/Dockerfile)
+* [`1-ol-7`, `1.10.1-ol-7-r26` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.10.1-ol-7-r26/1/ol-7/Dockerfile)
 * [`1-debian-9`, `1.10.1-debian-9-r26`, `1`, `1.10.1`, `1.10.1-r26`, `latest` (1/debian-9/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.10.1-debian-9-r26/1/debian-9/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
