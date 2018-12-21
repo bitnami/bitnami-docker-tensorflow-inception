@@ -1,12 +1,12 @@
-FROM bitnami/minideb-extras:stretch-r218
+FROM bitnami/minideb-extras:stretch-r229
 LABEL maintainer "Bitnami <containers@bitnami.com>"
 
 ENV PATH="/opt/bitnami/python/bin:/opt/bitnami/tensorflow-inception/bazel-bin/tensorflow_serving/example:$PATH"
 
 # Install required system packages and dependencies
 RUN install_packages libarchive-tools libbz2-1.0 libc6 libgcc1 libncurses5 libreadline7 libsqlite3-0 libssl1.1 libstdc++6 libtinfo5 zlib1g
-RUN bitnami-pkg install python-2.7.15-3 --checksum 3bad9208e166794f4716e1ccd7424581cb3c45362c4cd3f96165f2f3b5bb1a74
-RUN bitnami-pkg unpack tensorflow-inception-1.11.1-0 --checksum 07687d675db959cd46ff24105384e99879d321428cc305d5f1e07c179e60edf5
+RUN bitnami-pkg install python-2.7.15-20 --checksum 77c68cc5c463e53143bb7b6e6d322d5127d9cf4bd988b1aa217db2640e86e5fd
+RUN bitnami-pkg unpack tensorflow-inception-1.11.1-20 --checksum 6d36ea0870371840bacd14803bab64f84747411406aebe14b19c6b42715e2e8e
 RUN pip install --upgrade pip && \
     pip install enum34 futures mock numpy backports.weakref && \
     pip install Keras_Applications==1.0.5 Keras_Preprocessing==1.0.3 --no-deps && \
@@ -15,7 +15,7 @@ RUN pip install --upgrade pip && \
 
 COPY rootfs /
 ENV BITNAMI_APP_NAME="tensorflow-inception" \
-    BITNAMI_IMAGE_VERSION="1.11.1-debian-9-r35" \
+    BITNAMI_IMAGE_VERSION="1.11.1-debian-9-r36" \
     TENSORFLOW_INCEPTION_MODEL_INPUT_DATA_NAME="inception-v3" \
     TENSORFLOW_SERVING_HOST="tensorflow-serving" \
     TENSORFLOW_SERVING_PORT_NUMBER="8500"
