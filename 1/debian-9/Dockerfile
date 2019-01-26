@@ -1,4 +1,4 @@
-FROM bitnami/minideb-extras:stretch-r264
+FROM bitnami/minideb-extras:stretch-r265
 LABEL maintainer "Bitnami <containers@bitnami.com>"
 
 ENV PATH="/opt/bitnami/python/bin:/opt/bitnami/tensorflow-inception/bazel-bin/tensorflow_serving/example:$PATH"
@@ -15,7 +15,7 @@ RUN pip install --upgrade pip && \
 
 COPY rootfs /
 ENV BITNAMI_APP_NAME="tensorflow-inception" \
-    BITNAMI_IMAGE_VERSION="1.11.1-debian-9-r69" \
+    BITNAMI_IMAGE_VERSION="1.11.1-debian-9-r70" \
     TENSORFLOW_INCEPTION_MODEL_INPUT_DATA_NAME="inception-v3" \
     TENSORFLOW_SERVING_HOST="tensorflow-serving" \
     TENSORFLOW_SERVING_PORT_NUMBER="8500"
