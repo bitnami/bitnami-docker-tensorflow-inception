@@ -1,11 +1,11 @@
-FROM bitnami/oraclelinux-extras:7-r277
+FROM bitnami/oraclelinux-extras:7-r279
 LABEL maintainer "Bitnami <containers@bitnami.com>"
 
 ENV PATH="/opt/bitnami/python/bin:/opt/bitnami/tensorflow-inception/bazel-bin/tensorflow_serving/example:$PATH"
 
 # Install required system packages and dependencies
 RUN install_packages bsdtar bzip2-libs glibc keyutils-libs krb5-libs libcom_err libgcc libselinux libstdc++ ncurses-libs nss-softokn-freebl openssl-libs pcre readline sqlite zlib
-RUN bitnami-pkg install python-2.7.15-20 --checksum 74fe4964d24180d043f2ee328097a414c69ac7c955cfad228057bbeb9b4ab96f
+RUN bitnami-pkg install python-2.7.16-0 --checksum f1818dfd2f72ba498d54702d4e6aa44fcdecc1f0b1fc7d99703e74b4626f6395
 RUN bitnami-pkg unpack tensorflow-inception-1.11.1-20 --checksum 456b7fa582223eaa971aa9fecd7d882f31aebca1d8f323cb33b323b62bea02aa
 RUN pip install --upgrade pip && \
     pip install enum34 futures mock numpy backports.weakref && \
@@ -14,7 +14,7 @@ RUN pip install --upgrade pip && \
 
 COPY rootfs /
 ENV BITNAMI_APP_NAME="tensorflow-inception" \
-    BITNAMI_IMAGE_VERSION="1.11.1-ol-7-r122" \
+    BITNAMI_IMAGE_VERSION="1.11.1-ol-7-r123" \
     TENSORFLOW_INCEPTION_MODEL_INPUT_DATA_NAME="inception-v3" \
     TENSORFLOW_SERVING_HOST="tensorflow-serving" \
     TENSORFLOW_SERVING_PORT_NUMBER="8500"
