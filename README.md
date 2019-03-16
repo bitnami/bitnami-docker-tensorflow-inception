@@ -48,8 +48,8 @@ Bitnami containers can be used with [Kubeapps](https://kubeapps.com/) for deploy
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://docs.bitnami.com/containers/how-to/understand-rolling-tags-containers/).
 
 
-* [`1-ol-7`, `1.11.1-ol-7-r135` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-ol-7-r135/1/ol-7/Dockerfile)
-* [`1-debian-9`, `1.11.1-debian-9-r105`, `1`, `1.11.1`, `1.11.1-r105`, `latest` (1/debian-9/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-debian-9-r105/1/debian-9/Dockerfile)
+* [`1-ol-7`, `1.11.1-ol-7-r134` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-ol-7-r134/1/ol-7/Dockerfile)
+* [`1-debian-9`, `1.11.1-debian-9-r106`, `1`, `1.11.1`, `1.11.1-r106`, `latest` (1/debian-9/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-debian-9-r106/1/debian-9/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
 
