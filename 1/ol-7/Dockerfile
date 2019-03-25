@@ -1,4 +1,4 @@
-FROM bitnami/oraclelinux-extras:7-r299
+FROM bitnami/oraclelinux-extras:7-r300
 LABEL maintainer "Bitnami <containers@bitnami.com>"
 
 ENV PATH="/opt/bitnami/python/bin:/opt/bitnami/tensorflow-inception/bazel-bin/tensorflow_serving/example:$PATH"
@@ -14,7 +14,7 @@ RUN pip install --upgrade pip && \
 
 COPY rootfs /
 ENV BITNAMI_APP_NAME="tensorflow-inception" \
-    BITNAMI_IMAGE_VERSION="1.11.1-ol-7-r143" \
+    BITNAMI_IMAGE_VERSION="1.11.1-ol-7-r144" \
     TENSORFLOW_INCEPTION_MODEL_INPUT_DATA_NAME="inception-v3" \
     TENSORFLOW_SERVING_HOST="tensorflow-serving" \
     TENSORFLOW_SERVING_PORT_NUMBER="8500"
