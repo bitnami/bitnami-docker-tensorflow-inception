@@ -1,3 +1,7 @@
+# Deprecation Notice
+
+The Bitnami TensorFlow Inception container is deprecated. Consider using [TensorFlow ResNet](https://github.com/bitnami/bitnami-docker-tensorflow-resnet) instead. The container images will continue being available in Docker Hub and this repository will be archived in 15 days. 
+
 # What is TensorFlow Inception?
 
 > The Inception model is a TensorFlow model for image recognition. You can automatically categorize image based on trained data. For more information check [this link](https://www.tensorflow.org/tutorials/image_recognition)
@@ -48,8 +52,8 @@ Bitnami containers can be used with [Kubeapps](https://kubeapps.com/) for deploy
 Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://docs.bitnami.com/containers/how-to/understand-rolling-tags-containers/).
 
 
-* [`1-ol-7`, `1.11.1-ol-7-r163` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-ol-7-r163/1/ol-7/Dockerfile)
-* [`1-debian-9`, `1.11.1-debian-9-r134`, `1`, `1.11.1`, `1.11.1-r134`, `latest` (1/debian-9/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-debian-9-r134/1/debian-9/Dockerfile)
+* [`1-ol-7`, `1.11.1-ol-7-r164` (1/ol-7/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-ol-7-r164/1/ol-7/Dockerfile)
+* [`1-debian-9`, `1.11.1-debian-9-r135`, `1`, `1.11.1`, `1.11.1-r135`, `latest` (1/debian-9/Dockerfile)](https://github.com/bitnami/bitnami-docker-tensorflow-inception/blob/1.11.1-debian-9-r135/1/debian-9/Dockerfile)
 
 Subscribe to project updates by watching the [bitnami/tensorflow-inception GitHub repo](https://github.com/bitnami/bitnami-docker-tensorflow-inception).
 
