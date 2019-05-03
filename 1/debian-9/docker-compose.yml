@@ -1,7 +1,7 @@
 version: '2'
 services:
   tensorflow-serving:
-    image: 'bitnami/tensorflow-serving:latest'
+    image: 'bitnami/tensorflow-serving:1'
     ports:
       - 8500:8500
       - 8501:8501
